@@ -4,7 +4,7 @@ const GameController = (function (
     playerOneName = "Player One",
     playerTwoName = "Player Two"
 ) {
-    const board = Gameboard.getBoard;
+    const board = Gameboard.getBoard();
 
     const players = [
         {
@@ -19,20 +19,7 @@ const GameController = (function (
 
     let activePlayer = players[0];
 
-    const switchPlayerTurn = () => {
-        activePlayer = activePlayer === players[0] ? players[1] : players[0];
-    };
-
-    const getActivePlayer = () => activePlayer;
-
-    const printNewMove = () => {
-        console.log(Gameboard.getBoard());
-    };
-
-    const playRound = (row, column) => {
-        Gameboard.placeToken(row, column, getActivePlayer().token);
-
-        const winningCombinations = [
+    const winningCombinations = [
             // Рядки
             [[0, 0], [0, 1], [0, 2]],
             [[1, 0], [1, 1], [1, 2]],
@@ -48,13 +35,29 @@ const GameController = (function (
             [[0, 2], [1, 1], [2, 0]]
         ];
 
-        checkWin(board, getActivePlayer().token);
+    const switchPlayerTurn = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    };
+
+    const getActivePlayer = () => activePlayer;
+
+    const printNewMove = () => {
+        console.log(Gameboard.getBoard());
+    };
+
+    const playRound = (row, column) => {
+        Gameboard.placeToken(row, column, getActivePlayer().token);
+
+        if(checkWin(Gameboard.getBoard(), getActivePlayer().token)) {
+            console.log(getActivePlayer().token + " - WIN!!!");
+            printNewMove();
+            return
+        }
         switchPlayerTurn();
-        printNewRound();
+        printNewMove();
     };
 
     const checkWin = (board, turn) => {
-        console.log(turn);
         return winningCombinations.some(combination =>
             combination.every(([row, col]) => board[row][col] === turn)
         );
