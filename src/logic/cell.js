@@ -1,15 +1,15 @@
 function createCell() {
-    let value = " ";
+    let value = null;
 
-    const addToken = (playerToken) => {
-        value = playerToken;
+    const addToken = (player) => {
+        value = player;
     }
 
     const getValue = () => value;
 
     return {
         addToken,
-        getValue
+        getValue,
     }
 };
 

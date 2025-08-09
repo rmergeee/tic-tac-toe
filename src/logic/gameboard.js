@@ -17,9 +17,16 @@ const Gameboard = (function () {
         return row.map((Obj) => Obj.getValue())
     });
 
+    const placeToken = (row, column, player) => {
+        if(board[row][column].getValue() !== null) return;
+        return board[row][column].addToken(player);
+    }
+
     return {
         getBoard,
+        placeToken,
     }
+
 })();
 
 export default Gameboard;
