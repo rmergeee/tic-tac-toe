@@ -19,21 +19,24 @@ const GameController = (function (
 
     let activePlayer = players[0];
 
+    let isGameOver = false;
+
+    const getGameStatus = () => isGameOver;
+
+    const changeGameStatus = () => isGameOver = !isGameOver;
+
     const winningCombinations = [
-            // Рядки
-            [[0, 0], [0, 1], [0, 2]],
-            [[1, 0], [1, 1], [1, 2]],
-            [[2, 0], [2, 1], [2, 2]],
+        [[0, 0], [0, 1], [0, 2]],
+        [[1, 0], [1, 1], [1, 2]],
+        [[2, 0], [2, 1], [2, 2]],
 
-            // Стовпчики
-            [[0, 0], [1, 0], [2, 0]],
-            [[0, 1], [1, 1], [2, 1]],
-            [[0, 2], [1, 2], [2, 2]],
+        [[0, 0], [1, 0], [2, 0]],
+        [[0, 1], [1, 1], [2, 1]],
+        [[0, 2], [1, 2], [2, 2]],
 
-            // Діагоналі
-            [[0, 0], [1, 1], [2, 2]],
-            [[0, 2], [1, 1], [2, 0]]
-        ];
+        [[0, 0], [1, 1], [2, 2]],
+        [[0, 2], [1, 1], [2, 0]]
+    ];
 
     const switchPlayerTurn = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
@@ -41,20 +44,17 @@ const GameController = (function (
 
     const getActivePlayer = () => activePlayer;
 
-    const printNewMove = () => {
-        console.log(Gameboard.getBoard());
-    };
-
     const playRound = (row, column) => {
         Gameboard.placeToken(row, column, getActivePlayer().token);
 
-        if(checkWin(Gameboard.getBoard(), getActivePlayer().token)) {
-            console.log(getActivePlayer().token + " - WIN!!!");
-            printNewMove();
+        if (checkWin(board, getActivePlayer().token)) {
             return
+        };
+        if (checkTie(board)) {
+            return;
         }
+
         switchPlayerTurn();
-        printNewMove();
     };
 
     const checkWin = (board, turn) => {
@@ -63,10 +63,19 @@ const GameController = (function (
         );
     }
 
+    const checkTie = (board) => {
+        return board.every(row =>
+            row.every(cell => cell !== null)
+        );
+    };
+
     return {
         playRound,
         getActivePlayer,
         checkWin,
+        checkTie,
+        getGameStatus,
+        changeGameStatus,
     };
 })()
 
