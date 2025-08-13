@@ -1,6 +1,6 @@
 import Gameboard from "./gameboard.js";
 
-const GameController = (function (
+const GameController = function (
     playerOneName = "Player One",
     playerTwoName = "Player Two"
 ) {
@@ -77,6 +77,6 @@ const GameController = (function (
         getGameStatus,
         changeGameStatus,
     };
-})()
+};
 
 export default GameController;
