@@ -76,6 +76,7 @@ const GameController = function (
         checkTie,
         getGameStatus,
         changeGameStatus,
+        switchPlayerTurn,
     };
 };
 
