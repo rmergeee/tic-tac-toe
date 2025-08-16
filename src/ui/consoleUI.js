@@ -10,6 +10,7 @@ const ConsoleUI = (function () {
     const firstPlayerName = prompt("Введіть ім'я гравця X: ");
     const secondPlayerName = prompt("Введіть ім'я гравця O: ");
     const contrl = GameController(firstPlayerName, secondPlayerName);
+    console.table(Gameboard.getBoard());
 
     const playGame = () => {
         while (contrl.getGameStatus() === false) {
@@ -36,7 +37,7 @@ const ConsoleUI = (function () {
 
             if (contrl.checkWin(Gameboard.getBoard(), contrl.getActivePlayer().token)) {
                 log(contrl.getActivePlayer().name + " win!");
-                contrl.changeGameStatus();
+                break;
             }
 
             if (contrl.checkTie(Gameboard.getBoard())) {
