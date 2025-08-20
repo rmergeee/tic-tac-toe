@@ -117,10 +117,13 @@ fieldset *:first-child {
 fieldset input,
 fieldset select,
 fieldset textarea,
-fieldset label,
-fieldset button {
+fieldset label {
   margin-top: calc(var(--line-height) * 0.5);
   width: 100%;
+}
+
+fieldset button {
+  margin-top: calc(var(--line-height) * 0.5);
 }
 
 label {

@@ -11,8 +11,8 @@
 
 <body>
     <div class="players">
-        <div class="player">Player One</div>
-        <div class="player">Player Two</div>
+        <div class="player1">Player One</div>
+        <div class="player2">Player Two</div>
     </div>
     <div class="board">
         <div class="cell"></div>
@@ -26,21 +26,36 @@
         <div class="cell"></div>
     </div>
 
-    <dialog id="dialog">
+    <dialog id="dialog" closedby="closerequest">
         <h2>Welcome, Challengers!</h2>
         <p>Get ready to face off in a classic battle of wits. The Tic-Tac-Toe board awaits!</p>
+        <p>A quick reminder of the basics before you play!</p>
+
+        <ul>
+            <li>
+                The game is played on a <strong>3x3 grid</strong>.
+            </li>
+            <li>
+                Two players take turns placing their marks, X or O, on an empty square.
+            </li>
+            <li>
+                The first player to get <strong>three of their marks in a row</strong>&mdash;either horizontally,
+                vertically, or diagonally&mdash;wins the game.
+            </li>
+            <li>
+                If all nine squares are filled and no player has three in a row, the game is a <strong>draw</strong>.
+            </li>
+        </ul>
         <hr>
-        <fieldset>
-            <legend>Setup Players</legend>
-
-            <label for="p1name">Player One</label>
-            <input type="text" name="p1name" id="p1name">
-
-            <label for="p2name">Player Two</label>
-            <input type="text" name="p2name" id="p2name">
-
-
-            <button class="termb" type="submit">Strart Match</button>
+        <fieldset >
+            <form class="dialog-form">
+                <legend>Setup Players</legend>
+                <label for="p1name">Player One</label>
+                <input type="text" name="p1name" id="p1name">
+                <label for="p2name">Player Two</label>
+                <input type="text" name="p2name" id="p2name">
+                <button class="termb" type="submit">Strart Match</button>
+            </form>
         </fieldset>
 
     </dialog>
