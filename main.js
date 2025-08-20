@@ -1,3 +1,3 @@
-import ConsoleUI from "./src/ui/consoleUI.js";
+import BrowserUI from "./src/ui/browserUI.js";
 
-ConsoleUI.playGame();
+BrowserUI.playGame();
