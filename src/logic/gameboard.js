@@ -18,7 +18,7 @@ const Gameboard = (function () {
     });
 
     const placeToken = (row, column, player) => {
-        if(board[row][column].getValue() !== null) return;
+        if (board[row][column].getValue() !== null) return;
         return board[row][column].addToken(player);
     }
 

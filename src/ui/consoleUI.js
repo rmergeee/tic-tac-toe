@@ -28,7 +28,7 @@ const ConsoleUI = (function () {
                     column = Number(prompt("Введіть колонку (0-2): "));
                 } while (isNaN(column) || column < 0 || column > 2);
 
-                if(Gameboard.getBoard()[row][column] !== null) log("Ця клітинка зайнята! Оберіть іншу.");
+                if (Gameboard.getBoard()[row][column] !== null) log("Ця клітинка зайнята! Оберіть іншу.");
 
             } while (Gameboard.getBoard()[row][column] !== null)
 

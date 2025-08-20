@@ -1,2 +1,89 @@
 @import url(./terminal.css);
 
+body {
+    display: flex;
+
+    flex-direction: column;
+
+    height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.players {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+
+    font-size: 1.5rem;
+
+    .player:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+.board {
+    border: 1px solid white;
+    padding: 2px;
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+
+    width: 600px;
+    height: 600px;
+
+    gap: 2px;
+
+    .cell {
+        border: 1px solid white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 4rem;
+    }
+
+    .cell:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+#dialog {
+    align-self: center;
+    justify-self: center;
+
+    width: 800px;
+    height: 800px;
+
+    padding: 50px;
+
+    background-color: black;
+    border: 6px double white;
+    color: white;
+
+    fieldset {
+        margin-top: 1.5rem;
+    }
+}
+
+.termb {
+    border: none;
+    align-self: center;
+    padding: 0;
+}
+
+.termb:hover {
+    background-color: white;
+    color: black;
+}
+
+.termb::before {
+  content: '[';
+}
+
+.termb::after {
+  content: ']';
+}

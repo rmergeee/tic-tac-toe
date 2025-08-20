@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,42 @@
     <script src="src/ui/browserUI.js" defer></script>
     <title>Document</title>
 </head>
+
 <body>
-    
+    <div class="players">
+        <div class="player">Player One</div>
+        <div class="player">Player Two</div>
+    </div>
+    <div class="board">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+
+    <dialog id="dialog">
+        <h2>Welcome, Challengers!</h2>
+        <p>Get ready to face off in a classic battle of wits. The Tic-Tac-Toe board awaits!</p>
+        <hr>
+        <fieldset>
+            <legend>Setup Players</legend>
+
+            <label for="p1name">Player One</label>
+            <input type="text" name="p1name" id="p1name">
+
+            <label for="p2name">Player Two</label>
+            <input type="text" name="p2name" id="p2name">
+
+
+            <button class="termb" type="submit">Strart Match</button>
+        </fieldset>
+
+    </dialog>
 </body>
+
 </html>
