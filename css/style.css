@@ -51,7 +51,7 @@ body {
     }
 }
 
-#dialog {
+.dialog {
     align-self: center;
     justify-self: center;
 
@@ -95,4 +95,13 @@ body {
 
 .termb::after {
   content: ']';
+}
+
+.restart {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

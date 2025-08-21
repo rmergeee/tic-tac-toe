@@ -2,13 +2,14 @@ import GameController from "../logic/gamecontroller.js";
 import Gameboard from "../logic/gameboard.js";
 
 const BrowserUI = (function () {
-    const dialog = document.getElementById('dialog');
+    const dialog = document.querySelector('.start');
     const dialogForm = document.querySelector(".dialog-form");
     const player1NameOnPage = document.querySelector(".player1");
     const player2NameOnPage = document.querySelector(".player2");
     const playerTurn = document.querySelector(".active-player");
     const board = document.querySelector(".board");
     const cells = document.querySelectorAll(".cell");
+    const restartModal = document.querySelector(".restart");
 
     let playerNames = {};
 
@@ -59,10 +60,18 @@ const BrowserUI = (function () {
         if(game.getActivePlayer().token === "O") game.switchPlayerTurn();
     }
 
-    player2NameOnPage.addEventListener("click", restartGame)
+    // function openRestartModal() {
+    //     const rh2 = document.querySelector(".restart-h2")
+    //     rh2.textContent = `The player named ${game.getActivePlayer().name} won.`
+    //     const rbtn = document.querySelector(".restart-btn");
+    //     rbtn.addEventListener("click", () => {
+    //         restartGame();
+    //         restartModal.close();
+    //     })
+    //     restartModal.showModal();
+    // }
 
     function playGame() {
-        console.log(cells)
 
         setupGame();
 
@@ -73,7 +82,9 @@ const BrowserUI = (function () {
             const column = Number(cell.dataset.col);
 
             if (!cell) return;
-            if (game.getGameStatus()) return;
+            if (game.getGameStatus()) {
+                return
+            };
             if (Gameboard.getBoard()[row][column] !== null) return;
 
             Gameboard.placeToken(row, column, game.getActivePlayer().token);
@@ -91,7 +102,6 @@ const BrowserUI = (function () {
             }
 
             game.switchPlayerTurn();
-            console.table(Gameboard.getBoard())
         });
     }
 
