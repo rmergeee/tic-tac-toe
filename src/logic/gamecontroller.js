@@ -70,7 +70,6 @@ const GameController = function (
     };
 
     return {
-        playRound,
         getActivePlayer,
         checkWin,
         checkTie,
