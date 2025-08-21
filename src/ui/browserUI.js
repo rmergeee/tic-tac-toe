@@ -8,12 +8,11 @@ const BrowserUI = (function () {
     const player2NameOnPage = document.querySelector(".player2");
     const playerTurn = document.querySelector(".active-player");
     const board = document.querySelector(".board");
+    const cells = document.querySelectorAll(".cell");
 
     let playerNames = {};
 
     let game;
-
-    const virtualBoard = Gameboard;
 
     function openModal() {
         dialog.showModal();
@@ -43,31 +42,56 @@ const BrowserUI = (function () {
         })
     }
 
+    function updateUI(cell) {
+        Gameboard.getBoard().forEach((rowValue, row) => {
+            rowValue.forEach((colValue, col) => {
+                if (Number(cell.dataset.row) === row && Number(cell.dataset.col) === col) {
+                    cell.textContent = Gameboard.getBoard()[row][col];
+                }
+            })
+        })
+    }
+
+    function restartGame() {
+        game.changeGameStatusFalse();
+        Gameboard.clearBoard();
+        cells.forEach(div => div.textContent = "");
+        if(game.getActivePlayer().token === "O") game.switchPlayerTurn();
+    }
+
+    player2NameOnPage.addEventListener("click", restartGame)
+
     function playGame() {
+        console.log(cells)
 
         setupGame();
 
         board.addEventListener('click', (event) => {
             const cell = event.target.closest('.cell');
-            if (!cell) return;
 
             const row = Number(cell.dataset.row);
             const column = Number(cell.dataset.col);
 
-            cell.textContent = game.getActivePlayer().token;
-            game.switchPlayerTurn();
+            if (!cell) return;
+            if (game.getGameStatus()) return;
+            if (Gameboard.getBoard()[row][column] !== null) return;
 
             Gameboard.placeToken(row, column, game.getActivePlayer().token);
 
-            if (game.checkWin(virtualBoard.getBoard(), game.getActivePlayer().token)) {
+            updateUI(cell);
+
+            if (game.checkWin(Gameboard.getBoard(), game.getActivePlayer().token)) {
                 console.log(game.getActivePlayer().name + " win!");
-                game.changeGameStatus();
+                game.changeGameStatusTrue();
             }
 
-            if (game.checkTie(virtualBoard.getBoard())) {
+            if (game.checkTie(Gameboard.getBoard())) {
                 console.log("Tie!");
-                game.changeGameStatus();
+                game.changeGameStatusTrue();
             }
+
+            game.switchPlayerTurn();
+            console.table(Gameboard.getBoard())
         });
     }
 
@@ -75,6 +99,7 @@ const BrowserUI = (function () {
 
     return {
         playGame,
+        restartGame,
     }
 })()
 

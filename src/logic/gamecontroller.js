@@ -23,7 +23,8 @@ const GameController = function (
 
     const getGameStatus = () => isGameOver;
 
-    const changeGameStatus = () => isGameOver = !isGameOver;
+    const changeGameStatusFalse = () => isGameOver = false;
+    const changeGameStatusTrue = () => isGameOver = true;
 
     const winningCombinations = [
         [[0, 0], [0, 1], [0, 2]],
@@ -74,7 +75,8 @@ const GameController = function (
         checkWin,
         checkTie,
         getGameStatus,
-        changeGameStatus,
+        changeGameStatusFalse,
+        changeGameStatusTrue,
         switchPlayerTurn,
     };
 };

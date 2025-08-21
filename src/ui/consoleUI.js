@@ -42,7 +42,7 @@ const ConsoleUI = (function () {
 
             if (contrl.checkTie(Gameboard.getBoard())) {
                 log("Tie!");
-                contrl.changeGameStatus();
+                contrl.changeGameStatusTrue();
             }
 
             contrl.switchPlayerTurn();

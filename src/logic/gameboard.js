@@ -4,7 +4,7 @@ const Gameboard = (function () {
     const rows = 3;
     const columns = 3;
 
-    const board = [];
+    let board = [];
 
     for (let i = 0; i < rows; i++) {
         board[i] = [];
@@ -22,9 +22,20 @@ const Gameboard = (function () {
         return board[row][column].addToken(player);
     }
 
+    const clearBoard = () => {
+        board = [];
+        for (let i = 0; i < rows; i++) {
+            board[i] = [];
+            for (let j = 0; j < columns; j++) {
+                board[i].push(createCell());
+            }
+        }
+    }
+
     return {
         getBoard,
         placeToken,
+        clearBoard,
     }
 
 })();
