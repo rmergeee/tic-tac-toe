@@ -100,8 +100,14 @@ body {
 .restart {
     width: 400px;
     height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    
+    div {
+        /* border: 1px solid white; */
+        height: 100%;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
 }

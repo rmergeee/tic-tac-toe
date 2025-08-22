@@ -60,16 +60,17 @@ const BrowserUI = (function () {
         if(game.getActivePlayer().token === "O") game.switchPlayerTurn();
     }
 
-    // function openRestartModal() {
-    //     const rh2 = document.querySelector(".restart-h2")
-    //     rh2.textContent = `The player named ${game.getActivePlayer().name} won.`
-    //     const rbtn = document.querySelector(".restart-btn");
-    //     rbtn.addEventListener("click", () => {
-    //         restartGame();
-    //         restartModal.close();
-    //     })
-    //     restartModal.showModal();
-    // }
+    function openRestartModal() {
+        const rh2 = document.querySelector(".restart-h2")
+        rh2.textContent = `The player named ${game.getActivePlayer().name} won.`
+        if(game.checkTie(Gameboard.getBoard())) rh2.textContent = "Tie!";
+        const rbtn = document.querySelector(".restart-btn");
+        rbtn.addEventListener("click", () => {
+            restartGame();
+            restartModal.close();
+        })
+        restartModal.showModal();
+    }
 
     function playGame() {
 
@@ -92,12 +93,12 @@ const BrowserUI = (function () {
             updateUI(cell);
 
             if (game.checkWin(Gameboard.getBoard(), game.getActivePlayer().token)) {
-                console.log(game.getActivePlayer().name + " win!");
+                openRestartModal();
                 game.changeGameStatusTrue();
             }
 
             if (game.checkTie(Gameboard.getBoard())) {
-                console.log("Tie!");
+                openRestartModal();
                 game.changeGameStatusTrue();
             }
 
