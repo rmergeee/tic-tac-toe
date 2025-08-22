@@ -116,19 +116,12 @@ const BrowserUI = (function () {
             const cell = event.target.closest('.cell');
             if (!cell) return;
 
-            // Показуємо курсор
             cursor.style.display = 'block';
 
-            // Ставимо символ активного гравця
             cursor.textContent = game.getActivePlayer().token;
 
-            // Рухаємо курсор за мишею
             cursor.style.left = (event.pageX + 13) + "px";
             cursor.style.top = (event.pageY + 13) + "px";
-        });
-
-        board.addEventListener('mouseleave', () => {
-            cursor.style.display = 'none'; // ховаємо курсор, коли миша покидає поле
         });
     }
 
