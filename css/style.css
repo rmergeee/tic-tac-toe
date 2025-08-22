@@ -102,7 +102,6 @@ body {
     height: 400px;
     
     div {
-        /* border: 1px solid white; */
         height: 100%;
         display: flex;
         text-align: center;
