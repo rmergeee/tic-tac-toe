@@ -38,6 +38,7 @@ const BrowserUI = (function () {
             if (playerNames.p2name !== "") player2NameOnPage.textContent = playerNames.p2name;
 
             game = GameController(playerNames.p1name, playerNames.p2name);
+            playerTurn.textContent = `Turn ${game.getActivePlayer().name}`
 
             closeModal();
         })
@@ -57,13 +58,14 @@ const BrowserUI = (function () {
         game.changeGameStatusFalse();
         Gameboard.clearBoard();
         cells.forEach(div => div.textContent = "");
-        if(game.getActivePlayer().token === "O") game.switchPlayerTurn();
+        if (game.getActivePlayer().token === "O") game.switchPlayerTurn();
+        playerTurn.textContent = `Turn ${game.getActivePlayer().name}`;
     }
 
     function openRestartModal() {
         const rh2 = document.querySelector(".restart-h2")
         rh2.textContent = `The player named ${game.getActivePlayer().name} won.`
-        if(game.checkTie(Gameboard.getBoard())) rh2.textContent = "Tie!";
+        if (game.checkTie(Gameboard.getBoard())) rh2.textContent = "Tie!";
         const rbtn = document.querySelector(".restart-btn");
         rbtn.addEventListener("click", () => {
             restartGame();
@@ -77,6 +79,7 @@ const BrowserUI = (function () {
         setupGame();
 
         board.addEventListener('click', (event) => {
+
             const cell = event.target.closest('.cell');
 
             const row = Number(cell.dataset.row);
@@ -103,6 +106,29 @@ const BrowserUI = (function () {
             }
 
             game.switchPlayerTurn();
+
+            playerTurn.textContent = `Turn ${game.getActivePlayer().name}`
+        });
+
+        const cursor = document.getElementById('custom-cursor');
+
+        board.addEventListener('mousemove', (event) => {
+            const cell = event.target.closest('.cell');
+            if (!cell) return;
+
+            // Показуємо курсор
+            cursor.style.display = 'block';
+
+            // Ставимо символ активного гравця
+            cursor.textContent = game.getActivePlayer().token;
+
+            // Рухаємо курсор за мишею
+            cursor.style.left = (event.pageX + 13) + "px";
+            cursor.style.top = (event.pageY + 13) + "px";
+        });
+
+        board.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none'; // ховаємо курсор, коли миша покидає поле
         });
     }
 

@@ -111,3 +111,12 @@ body {
     }
 
 }
+
+#custom-cursor {
+    position: absolute;
+    pointer-events: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5); /* білий напівпрозорий */
+    display: none;
+}
